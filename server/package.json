@@ -7,7 +7,7 @@
     "dev": "concurrently \"npm run watch-compile\" \"npm run watch-dev\"",
     "watch-compile": "swc src -w --out-dir build",
     "watch-dev": "nodemon --watch \"build/**/*\" -e js ./build/index.js",
-    "build": "swc src -d build",
+    "build": "rimraf ./build && tsc",
     "start": "node build/index.js",
     "clean": "rm -rf build"
   },
