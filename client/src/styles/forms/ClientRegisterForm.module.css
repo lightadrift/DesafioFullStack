@@ -1,0 +1,73 @@
+.container {
+  height: 100vh;
+  position: relative;
+  display: flex;
+}
+
+.formulario_wrapper {
+  width: 100%;
+  max-width: 20rem;
+  margin: 1rem;
+  position: relative;
+  
+}
+
+.formulario {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  background-color: #f3f4f6;
+  padding: 0.5rem;
+  border-radius: 0.3rem;
+  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+}
+
+.input {
+  margin: 0.1rem;
+  padding: 0.4rem;
+  border-width: 1px;
+  border-radius: 4px;
+}
+
+.input::placeholder,
+.input_lat_log::placeholder {
+  font-size: larger;
+  font-family: "Inter", sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.02rem;
+}
+
+.lat_log_wrapper {
+  display: flex;
+  position: relative;
+}
+
+.input_lat_log {
+  margin: 0.1rem;
+  padding: 0.25rem;
+  width: 50%;
+}
+
+.buttons {
+  border-radius: 0.2rem;
+  padding: 0.5rem;
+  border-width: 1px;
+}
+
+.buttons_wrapper {
+  display: flex;
+  width: 100%;
+  place-content: center;
+  margin-top: 1rem;
+}
+
+.button_subwrapper {
+  width: 33%;
+  display: flex;
+  place-content: center;
+}
+
+.register_button {
+  background-color: aquamarine;
+}

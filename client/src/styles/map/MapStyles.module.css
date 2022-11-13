@@ -1,0 +1,14 @@
+.container {
+  position: relative;
+  margin: 1rem;
+  display: flex;
+  place-content: center;
+}
+
+.map_wrapper {
+  width: 60vw;
+  height: 60vh;
+  border: 1px solid #111827;
+  border-radius: 1rem;
+  overflow: hidden;
+}
