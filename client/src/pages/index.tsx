@@ -3,7 +3,6 @@ import dynamic from "next/dynamic";
 import style from "../styles/Home.module.css";
 import { useEffect, useMemo, useState } from "react";
 import { getList } from "../lib/GetDeliveries";
-import Table2 from "../components/tabela/tabl2";
 import Table1 from "../components/tabela/table";
 const Map = dynamic(() => import("../components/map/DeliveryMap"), {
   ssr: false,
