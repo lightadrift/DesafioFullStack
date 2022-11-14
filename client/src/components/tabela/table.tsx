@@ -89,14 +89,14 @@ function Table1({ data, setRerender }: ClientProps) {
         cell: (info) => info.getValue(),
         footer: (props) => props.column.id,
         accessorFn: (row) =>
-          String(row.Endereço.Geolocalização.Latitude).substring(0, 7),
+          String(row.Endereço.Geolocalização.Latitude).substring(0, 9),
       },
       {
         header: "Lng",
         cell: (info) => info.getValue(),
         footer: (props) => props.column.id,
         accessorFn: (row) =>
-          String(row.Endereço.Geolocalização.Longitude).substring(0, 7),
+          String(row.Endereço.Geolocalização.Longitude).substring(0, 9),
       },
       {
         header: "Delete",
