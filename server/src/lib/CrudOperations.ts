@@ -30,3 +30,10 @@ export const register = async (
     }
   );
 };
+
+
+
+
+export const deleteOne = async (id: string) => {
+  return await Delivery.findByIdAndDelete(id)
+}
