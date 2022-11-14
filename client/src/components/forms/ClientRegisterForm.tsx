@@ -2,6 +2,8 @@ import style from "../../styles/forms/ClientRegisterForm.module.css";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { getList } from "../../lib/GetDeliveries";
+
+const URL = process.env.API_URL || 'https://server-production-5420.up.railway.app/api/deliveries'
 interface Props {
   Nome: string | null;
   Peso: string | null;
@@ -35,7 +37,7 @@ const ClientForms = ({ test, setTest }: ClientProps) => {
     const { Nome, Peso, Endereço } = FormsData;
     const type = "Submit";
     const { data } = await axios
-      .post("http://localhost:5000/api/deliveries", {
+      .post(URL, {
         Nome,
         Peso,
         Endereço,
