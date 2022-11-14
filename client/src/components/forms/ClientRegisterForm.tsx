@@ -62,7 +62,7 @@ const ClientForms = ({ test, setTest }: ClientProps) => {
     event.preventDefault();
     const { Nome, Peso, Endereço } = FormsData;
     const type = "Search";
-    const { data } = await axios.post("http://localhost:5000/api/deliveries", {
+    const { data } = await axios.post(URL, {
       Nome,
       Peso,
       Endereço,
@@ -87,7 +87,7 @@ const ClientForms = ({ test, setTest }: ClientProps) => {
 
   async function handleDelete(event: React.MouseEvent) {
     event.preventDefault();
-    const data = await axios.delete("http://localhost:5000/api/deliveries");
+    const data = await axios.delete(URL);
     console.log(data);
     if (data.status === 200) {
       console.log("deletado");
