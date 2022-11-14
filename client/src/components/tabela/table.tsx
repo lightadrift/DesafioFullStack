@@ -40,7 +40,6 @@ type ClientProps = {
 
 
 function Table1({ data, setRerender }: ClientProps) {
-  console.log(data)
   async function DeleteOne(id: string) {
     const type = "DeleteOne";
     const data = await axios.delete(URL, {
