@@ -1,5 +1,5 @@
 import axios from "axios";
-import {URL} from "../../utils/API_URLS"
+import { URL } from "../../utils/API_URLS";
 import {
   Column,
   Table as ReactTable,
@@ -12,41 +12,42 @@ import {
   OnChangeFn,
   flexRender,
 } from "@tanstack/react-table";
-import {
-  useState,
-  useEffect,
-  useMemo,
-} from "react";
+import { useState, useEffect, useMemo } from "react";
 import style from "../../styles/table/Table.module.css";
 
 type Deliveries = {
-  NomeDoCliente: String;
-  Peso: Number;
+  NomeDoCliente: string;
+  Peso: number;
   Endereço: {
-    Logradouro: String;
-    Número: String;
-    Bairro: String;
-    Complemento: String;
-    Cidade: String;
-    Estado: String;
-    País: String;
+    Logradouro: string;
+    Número: string;
+    Bairro: string;
+    Complemento: string;
+    Cidade: string;
+    Estado: string;
+    País: string;
     Geolocalização: {
-      Latitude: String;
-      Longitude: String;
+      Latitude: string;
+      Longitude: string;
     };
   };
+  _id: string;
+};
+type ClientProps = {
+  data: any;
+  setRerender: (active: boolean) => void;
 };
 
 
-function Table1({ data, setRerender }: any) {
-
-async function DeleteOne(id: string) {
-    const type = 'DeleteOne'
+function Table1({ data, setRerender }: ClientProps) {
+  async function DeleteOne(id: string) {
+    const type = "DeleteOne";
     const data = await axios.delete(URL, {
       data: {
-        type
-      }
-    } );
+        type,
+        id
+      },
+    });
     if (data.status === 200) {
       setRerender(true);
     }
@@ -101,8 +102,8 @@ async function DeleteOne(id: string) {
         header: "Delete",
         cell: (row) => (
           <div>
-            <button onClick={() => console.log(row.row.original)}>
-                Deletar
+            <button onClick={() => DeleteOne(row.row.original._id)}>
+              Deletar
             </button>
           </div>
         ),

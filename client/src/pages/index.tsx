@@ -33,7 +33,7 @@ export default function Home() {
         <div className={style.section_wrapper}>
           <Map data={data1!} />
           <Infos data={data1} />
-          <Table1 data={data1!} />
+          <Table1 setRerender={setIsChanged} data={data1!} />
         </div>
       </div>
     </div>
