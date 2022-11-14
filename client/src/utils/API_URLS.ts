@@ -1,0 +1,1 @@
+export const URL = process.env.API_URL || 'https://server-production-5420.up.railway.app/api/deliveries'

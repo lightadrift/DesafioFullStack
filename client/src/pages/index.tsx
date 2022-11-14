@@ -4,13 +4,14 @@ import style from "../styles/Home.module.css";
 import { useEffect, useMemo, useState } from "react";
 import { getList } from "../lib/GetDeliveries";
 import Table1 from "../components/tabela/table";
+import Infos from "../components/infos/infos";
 const Map = dynamic(() => import("../components/map/DeliveryMap"), {
   ssr: false,
 });
 
-function sleep(ms: number) {
-  return new Promise((resolve) => setTimeout(resolve, ms));
-}
+// function sleep(ms: number) {
+//   return new Promise((resolve) => setTimeout(resolve, ms));
+// }
 
 export default function Home() {
   const [data1, setData] = useState<any>([]);
@@ -27,10 +28,13 @@ export default function Home() {
   }, [isChanged]);
   return (
     <div className={style.container}>
-      <ClientForms test={isChanged} setTest={setIsChanged} />
-      <div className={style.section_wrapper}>
-        <Map data={data1!} />
-        <Table1 data={data1!} />
+      <div className={style.subcontainer}>
+        <ClientForms test={isChanged} setTest={setIsChanged} />
+        <div className={style.section_wrapper}>
+          <Map data={data1!} />
+          <Infos data={data1} />
+          <Table1 data={data1!} />
+        </div>
       </div>
     </div>
   );

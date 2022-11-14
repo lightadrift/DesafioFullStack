@@ -1,0 +1,11 @@
+.infos {
+    font-size: 0.8vh;
+}
+
+
+.wrapper {
+    gap: 1rem;
+    position: relative;
+    display: flex;
+    margin-left: 1rem;
+}

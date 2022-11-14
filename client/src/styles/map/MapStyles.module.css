@@ -1,14 +1,44 @@
 .container {
+  width: 100%;
   position: relative;
-  margin: 1rem;
+  margin-top: 1rem;
   display: flex;
-  place-content: center;
+
 }
 
 .map_wrapper {
   width: 60vw;
-  height: 60vh;
+  height: 45vh;
   border: 1px solid #111827;
   border-radius: 1rem;
   overflow: hidden;
+}
+
+
+@media (max-width: 600px) {
+  .map_wrapper {
+    width: 86vw;
+    height: 40vh;
+    overflow: hidden;
+  }
+  .container {
+    position: relative;
+    margin: 0rem;
+    display: flex;
+  }
+}
+
+
+@media (max-width: 800px) {
+  .map_wrapper {
+    width: 86vw;
+    height: 40vh;
+    overflow: hidden;
+    margin: 1rem;
+  }
+  .container {
+    position: relative;
+    margin: 0rem;
+    display: flex;
+  }
 }

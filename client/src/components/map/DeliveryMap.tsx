@@ -15,13 +15,6 @@ function DeliveryMap({ data }: DataProps) {
     <>
       <div className={style.container}>
         <div
-          // style={{
-          //   width: "60vw",
-          //   height: "60vh",
-          //   borderStyle: "solid",
-          //   borderWidth: "0.15rem",
-          //   borderColor: "red",
-          // }}
           className={style.map_wrapper}
         >
           <MapContainer

@@ -2,8 +2,8 @@ import style from "../../styles/forms/ClientRegisterForm.module.css";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { getList } from "../../lib/GetDeliveries";
+import { URL } from "../../utils/API_URLS";
 
-const URL = process.env.API_URL || 'https://server-production-5420.up.railway.app/api/deliveries'
 interface Props {
   Nome: string | null;
   Peso: string | null;
@@ -18,6 +18,7 @@ type ClientProps = {
 };
 
 const ClientForms = ({ test, setTest }: ClientProps) => {
+  const [feedback, setFeedback] = useState<string>("");
   const [Coords, setCoords] = useState({
     lat: "",
     lng: "",
@@ -30,21 +31,24 @@ const ClientForms = ({ test, setTest }: ClientProps) => {
     Longitude: null,
   });
 
-
-
   const handleSubmit = async (event: React.SyntheticEvent<HTMLFormElement>) => {
     event.preventDefault();
     const { Nome, Peso, Endereço } = FormsData;
+    if (Nome === "" || Peso === "" || Endereço === "" ) {
+      setFeedback("Por favor preencherr todos os campos")
+      return
+    }
     const type = "Submit";
-    const { data } = await axios
-      .post(URL, {
-        Nome,
-        Peso,
-        Endereço,
-        type,
-      })
+    const { data } = await axios.post(URL, {
+      Nome,
+      Peso,
+      Endereço,
+      type,
+    });
+
+    console.log(data)
     if (data.status === false) {
-      console.log(data.msg);
+      setFeedback(data.msg)
     }
     if (data.status === true) {
       console.log("foi");
@@ -52,6 +56,9 @@ const ClientForms = ({ test, setTest }: ClientProps) => {
     }
   };
   function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
+    if(feedback?.length! >= 0) {
+      setFeedback("")
+    }
     setData({
       ...FormsData,
       [event.target.name]: event.target.value,
@@ -76,7 +83,6 @@ const ClientForms = ({ test, setTest }: ClientProps) => {
       }));
     }
     if (data.status === true) {
-      console.log("foi");
       setCoords((prevState) => ({
         ...prevState,
         lat: data.lat,
@@ -90,7 +96,6 @@ const ClientForms = ({ test, setTest }: ClientProps) => {
     const data = await axios.delete(URL);
     console.log(data);
     if (data.status === 200) {
-      console.log("deletado");
       setTest(true);
     }
   }
@@ -124,6 +129,7 @@ const ClientForms = ({ test, setTest }: ClientProps) => {
             <div className={style.lat_log_wrapper}>
               <input
                 className={style.input_lat_log}
+                disabled={true}
                 type="text"
                 name="Latitude"
                 placeholder="Latitude"
@@ -137,6 +143,7 @@ const ClientForms = ({ test, setTest }: ClientProps) => {
               />
               <input
                 className={style.input_lat_log}
+                disabled={true}
                 type="text"
                 name="Longitude"
                 placeholder="Longitude"
@@ -148,6 +155,11 @@ const ClientForms = ({ test, setTest }: ClientProps) => {
                   }))
                 }
               />
+            </div>
+            <div style={{ display: "flex", position: "relative", placeContent: "center", minHeight: "2rem"}}>
+              <h1 style={{
+                fontSize: "1vw"
+              }}>{feedback}</h1>
             </div>
             <div className={style.buttons_wrapper}>
               <div className={style.button_subwrapper}>
