@@ -6,6 +6,7 @@ export const register = async (
   Nome: string,
   Peso: string
 ) => {
+  console.log(data)
   Delivery.create(
     {
       NomeDoCliente: Nome,

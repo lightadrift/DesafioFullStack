@@ -3,15 +3,16 @@ import mongoose from "mongoose";
 import cors from "cors";
 import * as dotenv from "dotenv";
 import { Router } from "./routes/DeliveryRoutes";
-const PORT = process.env.PORT || 5000;
 const app = express();
+
+const PORT = process.env.PORT || 5000
 app.use(cors());
 app.use(express.json());
 
 dotenv.config();
 mongoose
   .connect(
-    `${process.env.MONGO_URL}`
+    "mongodb://mongo:824j2AX4zThZbRGAH96d@containers-us-west-117.railway.app:7926"
   )
   .then(() => {
     console.log("DB UP");
@@ -21,7 +22,8 @@ mongoose
   });
 
 const server = app.listen(PORT, () => {
-  console.log(`Server started on port ${PORT}`);
+  console.log(`Server started on port 5000`);
 });
+
 
 app.use("/api", Router);

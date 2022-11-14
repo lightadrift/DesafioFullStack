@@ -1,15 +1,15 @@
 import { NextFunction, Request, response, Response } from "express";
 import { Delivery } from "../models/DeliveriesSchema";
 import { GoogleGet } from "../lib/GoogleAPI/ApiGet";
-import { register } from "../lib/CrudOperations";
-import { GoogleReqProps } from "types/API/GoogleAPI";
-// const key = "AIzaSyAPDILqiEN3jHmdgjHh8kh9jBBS-3KNPgk";
+import { deleteOne, register } from "../lib/CrudOperations";
+
 
 interface ReqProps {
   Nome: string;
   Peso: string;
   Endereço: string;
   type: string;
+  id: string;
 }
 
 export const Deliveries = async (
@@ -19,7 +19,7 @@ export const Deliveries = async (
 ) => {
   try {
     const method = req.method;
-    const { Nome, Peso, Endereço, type } = req.body as ReqProps;
+    const { Nome, Peso, Endereço, type, id } = req.body as ReqProps;
     switch (method) {
       case "GET":
         const data = await Delivery.find({});
@@ -27,20 +27,18 @@ export const Deliveries = async (
         break;
       case "POST":
         if (type === "Submit") {
-          console.log(req.body);
+          console.log(req.body)
           const EndereçoFormatado = await GoogleGet(Endereço);
-          console.log(EndereçoFormatado);
           if (EndereçoFormatado != undefined) {
             await register(EndereçoFormatado, Nome, Peso);
             res.json({ msg: "Cliente Cadastrado", status: true });
           } else {
             return res.json({
-              msg: "Por favor especificar um número",
+              msg: "Por favor especificar um número de uma localidade",
               status: false,
             });
           }
         } else {
-          console.log(req.body);
           const EndereçoFormatado = await GoogleGet(Endereço);
           if (EndereçoFormatado != undefined) {
             return res.json({
@@ -57,9 +55,13 @@ export const Deliveries = async (
         }
         break;
       case "DELETE":
-        console.log("a");
-        await Delivery.deleteMany({});
-        res.json({ status: 200 });
+        if (type === "DeleteOne") {
+          await deleteOne(id);
+          res.json({ status: 200 })
+        } else {
+          await Delivery.deleteMany({});
+          res.json({ status: 200 });
+        }
         break;
       default:
         console.log("nenhum metodo reconhecido");

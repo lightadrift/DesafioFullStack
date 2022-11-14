@@ -1,7 +1,6 @@
 import style from "../../styles/forms/ClientRegisterForm.module.css";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { getList } from "../../lib/GetDeliveries";
 import { URL } from "../../utils/API_URLS";
 
 interface Props {
@@ -34,30 +33,41 @@ const ClientForms = ({ test, setTest }: ClientProps) => {
   const handleSubmit = async (event: React.SyntheticEvent<HTMLFormElement>) => {
     event.preventDefault();
     const { Nome, Peso, Endereço } = FormsData;
-    if (Nome === "" || Peso === "" || Endereço === "" ) {
-      setFeedback("Por favor preencherr todos os campos")
-      return
+    if (Nome === null || Peso === null || Endereço === null) {
+      setFeedback("Por favor preencher todos os campos");
+      return;
     }
     const type = "Submit";
-    const { data } = await axios.post(URL, {
-      Nome,
-      Peso,
-      Endereço,
-      type,
-    });
+    await axios
+      .post("http://localhost:5000/api/deliveries", {
+        Nome,
+        Peso,
+        Endereço,
+        type,
+      })
+      .then((response) => {
+        if (response.data.status === false) {
+          setFeedback(response.data.msg);
+        } else {
+          setTest(true);
+        }
+      })
+      .catch((err) => {
+        setFeedback(
+          `Endereço inválido. Por favor colocar endereço no formato: "Rua" "Número" "Bairro" "Cidade" ...etc`
+        );
+      });
 
-    console.log(data)
-    if (data.status === false) {
-      setFeedback(data.msg)
-    }
-    if (data.status === true) {
-      console.log("foi");
-      setTest(true);
-    }
+  
   };
   function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
-    if(feedback?.length! >= 0) {
-      setFeedback("")
+    setCoords((prevState) => ({
+      ...prevState,
+      lat: "",
+      lng: "",
+    }));
+    if (feedback?.length! >= 0) {
+      setFeedback("");
     }
     setData({
       ...FormsData,
@@ -94,7 +104,6 @@ const ClientForms = ({ test, setTest }: ClientProps) => {
   async function handleDelete(event: React.MouseEvent) {
     event.preventDefault();
     const data = await axios.delete(URL);
-    console.log(data);
     if (data.status === 200) {
       setTest(true);
     }
@@ -156,10 +165,23 @@ const ClientForms = ({ test, setTest }: ClientProps) => {
                 }
               />
             </div>
-            <div style={{ display: "flex", position: "relative", placeContent: "center", minHeight: "2rem"}}>
-              <h1 style={{
-                fontSize: "1vw"
-              }}>{feedback}</h1>
+            <div
+              style={{
+                display: "flex",
+                position: "relative",
+                placeContent: "center",
+                minHeight: "2rem",
+              }}
+            >
+              <h1
+                style={{
+                  fontSize: "1vw",
+                  width: "100%",
+                  padding: "1rem",
+                }}
+              >
+                {feedback}
+              </h1>
             </div>
             <div className={style.buttons_wrapper}>
               <div className={style.button_subwrapper}>
