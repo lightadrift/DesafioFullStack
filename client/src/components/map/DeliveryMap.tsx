@@ -22,8 +22,7 @@ function DeliveryMap({ data }: DataProps) {
           //   borderWidth: "0.15rem",
           //   borderColor: "red",
           // }}
-        className={style.map_wrapper}
-         
+          className={style.map_wrapper}
         >
           <MapContainer
             style={{ width: "100%", height: "100%" }}
@@ -44,9 +43,11 @@ function DeliveryMap({ data }: DataProps) {
                 key={index}
               >
                 <Popup>
-                  {e.NomeDoCliente}
-                  <br />
-                  {e.Peso}
+                  <span className={style.popup_span}>
+                    {e.NomeDoCliente}
+                    <br />
+                    {e.Peso}
+                  </span>
                 </Popup>
               </Marker>
             ))}

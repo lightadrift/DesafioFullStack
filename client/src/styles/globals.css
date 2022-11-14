@@ -19,3 +19,12 @@ a {
   box-sizing: border-box;
 }
 
+
+.leaflet-popup {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+}
+
+.leaflet-popup-content-wrapper {
+  text-align: center !important;
+}

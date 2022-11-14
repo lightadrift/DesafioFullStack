@@ -159,7 +159,7 @@ const ClientForms = ({ test, setTest }: ClientProps) => {
               <div className={style.button_subwrapper}>
                 <button
                   onClick={handleDelete}
-                  className={`${style.register_button} ${style.buttons}`}
+                  className={`${style.delete_button} ${style.buttons}`}
                 >
                   Deletar
                 </button>
@@ -167,7 +167,7 @@ const ClientForms = ({ test, setTest }: ClientProps) => {
               <div className={style.button_subwrapper}>
                 <button
                   onClick={handleSearch}
-                  className={`${style.register_button} ${style.buttons}`}
+                  className={`${style.search_button} ${style.buttons}`}
                 >
                   Buscar
                 </button>

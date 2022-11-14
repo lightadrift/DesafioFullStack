@@ -27,7 +27,7 @@
 }
 
 .table_body td {
-  font-size: 1.5vh;
+  font-size: 1.05vw;
   height: 1.5rem;
   padding: 0.4rem;
   text-align: center;
@@ -44,3 +44,5 @@
 .table_body tr:hover {
   background-color: #fee2e2;
 }
+
+

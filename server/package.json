@@ -2,13 +2,16 @@
   "name": "server",
   "version": "1.0.0",
   "description": "",
-  "main": "index.ts",
+  "main": "index.js",
+  "engines": {
+    "node": "16.x"
+  },
   "scripts": {
     "dev": "concurrently \"npm run watch-compile\" \"npm run watch-dev\"",
     "watch-compile": "swc src -w --out-dir build",
     "watch-dev": "nodemon --watch \"build/**/*\" -e js ./build/index.js",
-    "build": "rimraf ./public && tsc",
-    "start": "node public/index.js",
+    "build": "rimraf ./build && tsc",
+    "start": "node build/index.js",
     "clean": "rm -rf build"
   },
   "author": "",

@@ -52,7 +52,8 @@
 .buttons {
   border-radius: 0.2rem;
   padding: 0.5rem;
-  border-width: 1px;
+  border: none;
+  font-family: 'Inter', sans-serif;
 }
 
 .buttons_wrapper {
@@ -69,5 +70,17 @@
 }
 
 .register_button {
-  background-color: aquamarine;
+  background-color: #86efac;
 }
+
+
+.delete_button {
+  background-color: #f87171;
+}
+
+
+.search_button {
+  background-color: #22d3ee;
+}
+
+
