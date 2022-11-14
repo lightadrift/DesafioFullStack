@@ -2,6 +2,8 @@
   height: 100vh;
   position: relative;
   display: flex;
+  place-content: center;
+  margin-bottom: 1rem;
 }
 
 .formulario_wrapper {
@@ -53,7 +55,7 @@
   border: none;
   font-family: "Inter", sans-serif;
   font-weight: 600;
-  transition: .2s ease-in-out 0s all;
+  transition: 0.2s ease-in-out 0s all;
 }
 
 .buttons:hover {
@@ -90,10 +92,10 @@
   .formulario_wrapper {
     width: 100%;
     max-width: 25rem;
-    margin: 1rem;
     position: relative;
     bottom: 0%;
     margin-top: 4rem;
+    margin-bottom: 4rem;
   }
   .container {
     height: 80vh;
@@ -104,16 +106,17 @@
 
 @media (max-width: 800px) {
   .formulario_wrapper {
-    bottom: -3%;
+    width: 100%;
+    max-width: 30rem;
+    position: relative;
+    bottom: 0%;
+    margin-top: 4rem;
+    margin-bottom: 4rem;
   }
   .container {
     height: 75vh;
     position: relative;
     place-content: center;
     display: flex;
-  }
-  .formulario_wrapper {
-    max-width: 30rem;
-    position: relative;
   }
 }

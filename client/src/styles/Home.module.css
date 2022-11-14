@@ -1,12 +1,8 @@
 .container {
   padding: 0 2rem;
   display: flex;
-  width: 100vw;
   height: 100vh;
 }
-
-
-
 
 .section_wrapper {
   position: relative;
@@ -17,27 +13,22 @@
 
 .subcontainer {
   display: flex;
+  flex-direction: row;
   position: relative;
-  width: 100vw;
-  gap: 10rem;
+  gap: 5rem;
 }
-
 
 @media (max-width: 600px) {
-  .container {
-   flex-direction: column;
+  .subcontainer {
+    flex-direction: column;
+    place-content: center;
+    gap: 0
   }
-  .container {
-    height: 85vh;
-  }
-  
 }
 @media (max-width: 800px) {
-  .container {
-   flex-direction: column;
+  .subcontainer {
+    flex-direction: column;
+    place-content: center;
+    gap: 0
   }
-  .container {
-    height: 85vh;
-  }
-  
 }
