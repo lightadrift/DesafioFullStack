@@ -39,7 +39,7 @@ const ClientForms = ({ test, setTest }: ClientProps) => {
     }
     const type = "Submit";
     await axios
-      .post("http://localhost:5000/api/deliveries", {
+      .post("https://server-production-5420.up.railway.app/api/deliveries", {
         Nome,
         Peso,
         Endereço,
@@ -54,7 +54,7 @@ const ClientForms = ({ test, setTest }: ClientProps) => {
       })
       .catch((err) => {
         setFeedback(
-          `Endereço inválido. Por favor colocar endereço no formato: "Rua" "Número" "Bairro" "Cidade" ...etc`
+          `Endereço inválido. Por favor colocar endereço no formato: "Rua" "Número" "Bairro" "Cidade" ...etc ${err}`
         );
       });
 

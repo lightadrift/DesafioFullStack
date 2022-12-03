@@ -15,6 +15,13 @@ import {
 import { useState, useEffect, useMemo } from "react";
 import style from "../../styles/table/Table.module.css";
 
+// import getDeliveries
+
+
+
+
+
+
 type Deliveries = {
   NomeDoCliente: string;
   Peso: number;
